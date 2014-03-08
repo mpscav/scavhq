@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="ScavHQ">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="../static/js/lib/mm-foundation-0.1.0.min.js"></script>
     <script src="../static/js/app.js"></script>
+    <script src="../static/js/controllers.js"></script>
 </head>
 <body>
     <nav class="top-bar">
@@ -33,8 +34,25 @@
         </section>
     </nav>
     <div class="row">
-        <div class="large-12 columns">
-            <h1>Hello World!</h1>
+        <div class="large-12 columns" ng-controller="ItemsCtrl">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>P</th>
+                        <th>Text</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in items">
+                        <td>{{item.num}}</td>
+                        <td>{{item.page}}</td>
+                        <td>{{item.text}}</td>
+                        <td>{{item.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
