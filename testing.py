@@ -19,16 +19,16 @@ class ScavhqTestCase(unittest.TestCase):
 
 class TestItemAPI(ScavhqTestCase):
     def test_get_index_none_exist(self):
-        response = self.app.get('/items')
+        response = self.app.get('/api/items')
         assert json.loads(response.data) == []
 
     def test_get_index_with_items(self):
         self.items.insert({'num': 1, 'page': 1, 'text': 'Bring me Big Bertha!', 'value': '43 points'})
-        response = self.app.get('/items')
+        response = self.app.get('/api/items')
         assert json.loads(response.data)[0]['num'] == 1
 
     def test_add_item(self):
-        response = self.app.post('/items', data=json.dumps(dict(
+        response = self.app.post('/api/items', data=json.dumps(dict(
             num=1,
             page=1,
             text='Bring me Big Bertha!',
@@ -42,7 +42,7 @@ class TestItemAPI(ScavhqTestCase):
 
     def test_edit_item_that_exists(self):
         self.items.insert({'num': 1, 'page': 1, 'text': 'Bring me Big Bertha!', 'value': '43 points'})
-        response = self.app.post('/items/1', data=json.dumps(dict(page=2)), content_type="application/json")
+        response = self.app.post('/api/items/1', data=json.dumps(dict(page=2)), content_type="application/json")
         
         assert response.status_code == 200
 
@@ -51,19 +51,19 @@ class TestItemAPI(ScavhqTestCase):
 
     def test_edit_item_that_does_not_exist(self):
         self.items.insert({'num': 1, 'page': 1, 'text': 'Bring me Big Bertha!', 'value': '43 points'})
-        response = self.app.post('/items/2', data=json.dumps(dict(page=2)), content_type="application/json")
+        response = self.app.post('/api/items/2', data=json.dumps(dict(page=2)), content_type="application/json")
         
         assert response.status_code == 404
 
     def test_delete_item_that_exists(self):
         self.items.insert({'num': 1, 'page': 1, 'text': 'Bring me Big Bertha!', 'value': '43 points'})
-        response = self.app.delete('/items/1')
+        response = self.app.delete('/api/items/1')
 
         assert response.status_code == 200
 
     def test_delete_nonexisting_item(self):
         self.items.insert({'num': 1, 'page': 1, 'text': 'Bring me Big Bertha!', 'value': '43 points'})
-        response = self.app.delete('/items/2')
+        response = self.app.delete('/api/items/2')
 
         assert response.status_code == 404
 
