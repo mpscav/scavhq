@@ -7,6 +7,10 @@ app = Flask(__name__)
 client = MongoClient('localhost', 27017)
 db = client['scavhq-dev']
 
+@app.route('/')
+def index():
+    return send_file('templates/index.html')
+
 @app.route('/api/items', methods=['GET'])
 def items_get_all():
     items_json = json.dumps(list(db.items.find()), default=json_util.default)
