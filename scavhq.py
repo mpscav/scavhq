@@ -1,4 +1,4 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, send_file
 from pymongo import MongoClient
 from bson import json_util
 import json
@@ -6,6 +6,10 @@ import json
 app = Flask(__name__)
 client = MongoClient('localhost', 27017)
 db = client['scavhq-dev']
+
+# Dev settings
+app.config['DEBUG'] = True
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 @app.route('/')
 def index():
