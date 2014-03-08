@@ -33,3 +33,6 @@ def item_destroy(num):
     result = db.items.remove({'num': int(num)})
     status = 404 if result['n'] is 0 else 200
     return Response(status=status)
+
+if __name__ == "__main__":
+    app.run()
