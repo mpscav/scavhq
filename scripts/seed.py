@@ -15,8 +15,14 @@ if __name__ == "__main__":
             db.items.insert({
                 'num': item['number'],
                 'page': item['page'],
+                'leader': 'Roberto Pedroso',
+                'name': "World's Largest Kazoo",
                 'text': item['text'],
-                'value': item['value']
+                'value': item['value'],
+                'date': 'Sun @ 12:00pm',
+                'tags': ['Construction', 'Music'],
+                'status': 'not-started',
+
             })
 
         json_data.close()

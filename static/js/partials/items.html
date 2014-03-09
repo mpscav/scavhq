@@ -1,22 +1,69 @@
-<div class="large-12 columns">
-    <h2>Item List</h2>
+<div class="row table-header">
+    <div class="large-6 columns table-heading">
+        <h2>Item List</h2>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>P</th>
-                <th>Text</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in items|orderBy:'num'">
-                <td>{{item.num}}</td>
-                <td>{{item.page}}</td>
-                <td>{{item.text}}</td>
-                <td>{{item.value}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="large-6 columns table-controls">
+        <button class="button tiny">Button</button>
+        <button class="button tiny">Button</button>
+        <button class="button tiny">Button</button>
+    </div>
+</div>
+
+<div class="row table-options">
+    <div class="large-6 columns table-filter">
+        <dl class="sub-nav">
+            <dt>Filter:</dt>
+            <dd ng-class="filtering.class('all')">
+                <a ng-click="filtering.clear()">All</a>
+            </dd>
+            <dd ng-class="filtering.class('casual')">
+                <a ng-click="filtering.set('casual', 'casual', 'not-started')">Casual</a>
+            </dd>
+            <dd ng-class="filtering.class('urgent')">
+                <a ng-click="filtering.set('urgent', '', 'urgent')">Urgent</a>
+            </dd>
+        </dl>
+    </div>
+
+    <div class="large-6 columns table-search">
+        <input type="text" placeholder="Search..." ng-model="filtering.filters.$">
+    </div>
+</div>
+
+<div class="row table-container">
+    <div class="table-header-background"> </div>
+    <div class="table-container-inner">
+        <table id="items">
+            <thead>
+                <tr>
+                    <th><div class="th-inner">#</div></th>
+                    <th><div class="th-inner">P</div></th>
+                    <th><div class="th-inner">Leader</div></th>
+                    <th><div class="th-inner">Description</div></th>
+                    <th><div class="th-inner">Tags</div></th>
+                    <th><div class="th-inner">Due Date</div></th>
+                    <th><div class="th-inner">Status</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items | filter:filtering.filters | orderBy:'num'">
+                    <td>{{item.num}}</td>
+                    <td>{{item.page}}</td>
+                    <td><a href="#">{{item.leader}}</a></td>
+                    <td>
+                        <dl class="item-description">
+                            <dd>{{item.name}}</dd>
+                            <dd class="item-value"><span>Value:</span> 43 points</dd>
+                        </dl>
+                    </td>
+                    <td>Construction, Music</td>
+                    <td>{{item.date}}</td>
+                    <td>
+                        <span class="label {{item.status}}">Not Started</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
