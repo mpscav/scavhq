@@ -1,0 +1,22 @@
+<div class="large-12 columns">
+    <h2>Item List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>P</th>
+                <th>Text</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items|orderBy:'num'">
+                <td>{{item.num}}</td>
+                <td>{{item.page}}</td>
+                <td>{{item.text}}</td>
+                <td>{{item.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

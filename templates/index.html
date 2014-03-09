@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/app.css">
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
     <script src="../static/js/app.js"></script>
     <script src="../static/js/controllers.js"></script>
 </head>
@@ -21,38 +22,14 @@
         </ul>
 
         <section class="top-bar-section">
-            <ul class="right">
-                <li><a href="#">Items</a></li>
-                <li><a href="#">People</a></li>
-                <li><a href="#">Missions</a></li>
-                <li><a href="#">Contact</a></li>
+            <ul class="right" ng-controller="NavCtrl">
+                <li ng-repeat="link in navLinks" ng-class="navClass('{{link}}')">
+                    <a href="#/{{link}}">{{link | titleize}}</a>
+                </li>
                 <li><a href="#"><i class="fa fa-cog"></i></a></li>
             </ul>
         </section>
     </nav>
-    <div id="items" class="row">
-        <div class="large-12 columns" ng-controller="ItemsCtrl">
-            <h2>Item List</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>P</th>
-                        <th>Text</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in items|orderBy:'num'">
-                        <td>{{item.num}}</td>
-                        <td>{{item.page}}</td>
-                        <td>{{item.text}}</td>
-                        <td>{{item.value}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <div id="items" class="row" ng-view></div>
 </body>
 </html>
