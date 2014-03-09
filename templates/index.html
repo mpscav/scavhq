@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in items">
+                    <tr ng-repeat="item in items|orderBy:'num'">
                         <td>{{item.num}}</td>
                         <td>{{item.page}}</td>
                         <td>{{item.text}}</td>
