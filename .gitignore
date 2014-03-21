@@ -54,3 +54,6 @@ docs/_build/
 
 # generic stuff
 .DS_Store
+
+# nodejs
+node_modules/
