@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="ScavHQ">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +10,6 @@
     <link rel="stylesheet" href="../static/css/foundation.min.css">
     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/app.css">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
-    <script src="../static/js/app.js"></script>
-    <script src="../static/js/controllers.js"></script>
 </head>
 <body>
     <nav class="top-bar">
@@ -25,14 +20,69 @@
 
         <section class="top-bar-section">
             <ul class="right" ng-controller="NavCtrl">
-                <li ng-repeat="link in navLinks" ng-class="navClass('{{link}}')">
-                    <a href="#/{{link}}">{{link | titleize}}</a>
-                </li>
+                <li class="active"><a href="#">Items</a></li>
+                <li><a href="#">People</a></li>
+                <li><a href="#">Missions</a></li>
+                <li><a href="#">Contact</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i></a></li>
             </ul>
         </section>
     </nav>
 
-    <section class="main" ng-view></section>
+    <section class="main" ng-view>
+        <div class="row table-header">
+            <div class="large-6 columns table-heading">
+                <h2>Item List</h2>
+            </div>
+
+            <div class="large-6 columns table-controls">
+                <button class="button tiny">Button</button>
+                <button class="button tiny">Button</button>
+                <button class="button tiny">Button</button>
+            </div>
+        </div>
+
+        <div class="row table-options">
+            <div class="large-6 columns table-filter">
+                <dl class="sub-nav">
+                    <dt>Filter:</dt>
+                    <dd ng-class="filtering.class('all')">
+                        <a ng-click="filtering.clear()">All</a>
+                    </dd>
+                    <dd ng-class="filtering.class('casual')">
+                        <a ng-click="filtering.set('casual', 'casual', 'not-started')">Casual</a>
+                    </dd>
+                    <dd ng-class="filtering.class('urgent')">
+                        <a ng-click="filtering.set('urgent', '', 'urgent')">Urgent</a>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="large-6 columns table-search">
+                <input type="text" placeholder="Search..." ng-model="filtering.filters.$">
+            </div>
+        </div>
+
+        <div class="row table-container">
+            <div class="table-header-background"> </div>
+            <div class="table-container-inner">
+                <table id="items">
+                    <thead>
+                        <tr>
+                            <th><div class="th-inner">#</div></th>
+                            <th><div class="th-inner">P</div></th>
+                            <th><div class="th-inner">Leader</div></th>
+                            <th><div class="th-inner">Description</div></th>
+                            <th><div class="th-inner">Tags</div></th>
+                            <th><div class="th-inner">Due Date</div></th>
+                            <th><div class="th-inner">Status</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
