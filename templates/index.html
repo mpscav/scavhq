@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="../static/css/foundation.min.css">
     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/app.css">
+
+    <script src="../static/js/vendor/jquery.min.js"></script>
+    <script src="../static/js/vendor/react.js"></script>
+    <script src="../static/js/vendor/JSXTransformer.js"></script>
+
+    <script type="text/jsx" src="../static/js/app.js"></script>
 </head>
 <body>
     <nav class="top-bar">
@@ -65,7 +71,7 @@
 
         <div class="row table-container">
             <div class="table-header-background"> </div>
-            <div class="table-container-inner">
+            <div id="item-table-container" class="table-container-inner">
                 <table id="items">
                     <thead>
                         <tr>
@@ -78,8 +84,7 @@
                             <th><div class="th-inner">Status</div></th>
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody id="items-body"></tbody>
                 </table>
             </div>
         </div>
