@@ -17,9 +17,7 @@ def index():
 
 @app.route('/api/items', methods=['GET'])
 def items_get_all():
-    items = list(db.items.find())
-    items.sort(key=lambda x: x['num'])
-    items_json = json.dumps(items, default=json_util.default)
+    items_json = json.dumps(list(db.items.find()), default=json_util.default)
     return Response(response=items_json, status=200, mimetype="application/json")
 
 @app.route('/api/items', methods=['POST'])

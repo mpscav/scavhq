@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../static/css/app.css">
 
     <script src="../static/js/vendor/jquery.min.js"></script>
+    <script src="../static/js/vendor/underscore-min.js"></script>
     <script src="../static/js/vendor/react.js"></script>
     <script src="../static/js/vendor/JSXTransformer.js"></script>
 
@@ -35,7 +36,7 @@
         </section>
     </nav>
 
-    <section class="main" ng-view>
+    <section id="items" class="main">
         <div class="row table-header">
             <div class="large-6 columns table-heading">
                 <h2>Item List</h2>
@@ -49,20 +50,7 @@
         </div>
 
         <div class="row table-options">
-            <div class="large-6 columns table-filter">
-                <dl class="sub-nav">
-                    <dt>Filter:</dt>
-                    <dd ng-class="filtering.class('all')">
-                        <a ng-click="filtering.clear()">All</a>
-                    </dd>
-                    <dd ng-class="filtering.class('casual')">
-                        <a ng-click="filtering.set('casual', 'casual', 'not-started')">Casual</a>
-                    </dd>
-                    <dd ng-class="filtering.class('urgent')">
-                        <a ng-click="filtering.set('urgent', '', 'urgent')">Urgent</a>
-                    </dd>
-                </dl>
-            </div>
+            <div id="item-table-filters" class="large-6 columns table-filter"></div>
 
             <div class="large-6 columns table-search">
                 <input type="text" placeholder="Search..." ng-model="filtering.filters.$">
@@ -71,22 +59,7 @@
 
         <div class="row table-container">
             <div class="table-header-background"> </div>
-            <div id="item-table-container" class="table-container-inner">
-                <table id="items">
-                    <thead>
-                        <tr>
-                            <th><div class="th-inner">#</div></th>
-                            <th><div class="th-inner">P</div></th>
-                            <th><div class="th-inner">Leader</div></th>
-                            <th><div class="th-inner">Description</div></th>
-                            <th><div class="th-inner">Tags</div></th>
-                            <th><div class="th-inner">Due Date</div></th>
-                            <th><div class="th-inner">Status</div></th>
-                        </tr>
-                    </thead>
-                    <tbody id="items-body"></tbody>
-                </table>
-            </div>
+            <div id="item-table-container" class="table-container-inner"></div>
         </div>
     </section>
 </body>
